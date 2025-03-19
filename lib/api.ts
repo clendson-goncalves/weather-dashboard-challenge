@@ -7,8 +7,7 @@ type WeatherResponse = {
 }
 
 export async function fetchWeatherForCity(city: string, countryCode: string): Promise<WeatherResponse> {
-  // Use the NEXT_PUBLIC_ prefixed variable since this will be called from the client
-  const API_KEY = process.env.OPENWEATHER_API_KEY
+  const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY
 
   if (!API_KEY) {
     throw new Error("OpenWeather API key is missing")

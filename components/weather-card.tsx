@@ -33,11 +33,11 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
           <div className="grid grid-cols-2 gap-4 pt-2 border-t border-border">
             <div>
               <p className="font-light text-muted-foreground text-sm">Humidity</p>
-              <p className="font-light text-sm">{data.humidity}%</p>
+              <p className="font-normal text-sm">{data.humidity}%</p>
             </div>
             <div>
               <p className="font-light text-muted-foreground text-sm">Pressure</p>
-              <p className="font-light text-sm flex items-center">
+              <p className="font-normal text-sm flex items-center">
                 {data.pressure}hPa
               </p>
             </div>

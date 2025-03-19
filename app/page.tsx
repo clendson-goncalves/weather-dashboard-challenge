@@ -10,7 +10,7 @@ export default function Home() {
         <p className="text-muted-foreground mt-2">Real-time weather data for Joinville, San Francisco, and Urubici</p>
       </header>
       <WeatherDashboard />
-      <footer className="mt-12 text-center text-sm text-muted-foreground">
+      <footer className="mt-12 text-center text-xs text-muted-foreground">
         <p>Data provided by OpenWeatherMap</p>
       </footer>
     </main>

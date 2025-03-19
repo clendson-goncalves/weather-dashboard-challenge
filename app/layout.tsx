@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Weather Monitor",
-  description: "Real-time weather data for Joinville, San Francisco, and Urubici",
+  description: "Real-time weather data for Joinville/SC (Brazil), San Francisco/CA (USA), and Urubici/SC (Brazil)",
 };
 
 export default function RootLayout({

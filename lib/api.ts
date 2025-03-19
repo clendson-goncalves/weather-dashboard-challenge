@@ -26,7 +26,7 @@ export async function fetchWeatherForCity(city: string, countryCode: string): Pr
 
     // Format the country display based on the country code
     const countryDisplay = countryCode === "BR" ? "SC (Brazil)" : "CA (USA)"
-
+    
     return {
       city: city,
       country: countryDisplay,

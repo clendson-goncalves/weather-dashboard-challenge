@@ -5,16 +5,14 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
   // Function to determine temperature color based on the requirements
   const getTemperatureColor = (temp: number) => {
     if (temp <= 5) return "text-temp-cold"
-    if (temp <= 15) return "text-temp-cool"
-    if (temp <= 25) return "text-temp-moderate"
+    if (temp <= 25 && temp > 5) return "text-temp-moderate"
     return "text-temp-hot"
   }
 
   // Function to get temperature description
   const getTemperatureDescription = (temp: number) => {
     if (temp <= 5) return "Cold"
-    if (temp <= 15) return "Cool"
-    if (temp <= 25) return "Moderate"
+    if (temp <= 25 && temp > 5) return "Moderate"
     return "Hot"
   }
 

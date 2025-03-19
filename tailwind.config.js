@@ -53,8 +53,7 @@ module.exports = {
           },
           // Custom weather temperature colors
           temp: {
-            cold: "#3b82f6", // blue-500
-            cool: "#0ea5e9", // sky-500
+            cold: "#0ea5e9", // sky-500
             moderate: "#f97316", // orange-500
             hot: "#ef4444", // red-500
           },

@@ -29,12 +29,15 @@ export default function WeatherDashboard() {
     <section className="w-full max-w-4xl">
       {loading && weatherData.length === 0 && (
         <div className="text-center mb-6">
-          <p className="text-gray-600">Loading weather data...</p>
+          <p className="text-muted-foreground">Loading weather data...</p>
         </div>
       )}
 
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6" role="alert">
+        <div
+          className="bg-destructive/10 border border-destructive text-destructive px-4 py-3 rounded-md mb-6"
+          role="alert"
+        >
           <p>{error}</p>
         </div>
       )}
@@ -46,7 +49,7 @@ export default function WeatherDashboard() {
       </div>
 
       {lastUpdated && (
-        <div className="text-center mt-6 text-sm text-gray-500">
+        <div className="text-center mt-6 text-sm text-muted-foreground">
           <p>Last updated: {lastUpdated}</p>
           <p>Next update in {loading ? "..." : "10 minutes"}</p>
         </div>

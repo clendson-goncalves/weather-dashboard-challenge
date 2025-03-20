@@ -1,11 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useWeatherStore } from "@/lib/store"
+import { useWeatherStore } from "@/lib/weather-store"
 import WeatherCard from "./weather-card"
 
 export default function WeatherDashboard() {
-  const { weatherData, fetchWeatherData, loading, error } = useWeatherStore()
+  const { data, fetchWeather, loading, error } = useWeatherStore()
   const [lastUpdated, setLastUpdated] = useState<string | null>(null)
 
   //set the count of minutes to fetch weather data
@@ -14,7 +14,7 @@ export default function WeatherDashboard() {
   useEffect(() => {
     // Function to fetch data and update timestamp
     const fetchData = async () => {
-      await fetchWeatherData()
+      await fetchWeather()
       setLastUpdated(new Date().toLocaleTimeString())
     }
 
@@ -26,11 +26,11 @@ export default function WeatherDashboard() {
 
     // Clean up interval on component unmount
     return () => clearInterval(interval)
-  }, [fetchWeatherData])
+  }, [fetchWeather])
 
   return (
     <section className="w-full max-w-4xl">
-      {loading && weatherData.length === 0 && (
+      {loading && data.length === 0 && (
         <div className="text-center mb-6">
           <p className="text-muted-foreground">Loading weather data...</p>
         </div>
@@ -46,7 +46,7 @@ export default function WeatherDashboard() {
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {weatherData.map((data) => (
+        {data.map((data) => (
           <WeatherCard key={data.city} data={data} />
         ))}
       </div>

@@ -1,20 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import type { WeatherData } from "@/lib/types"
+import type { WeatherData } from "@/lib/weather-store"
 import { MapPin, ArrowUp, ArrowDown, ChevronDown } from "lucide-react"
-import HourlyForecast from "./hourly-forecast"
+import HourlyForecast from "@/components/hourly-forecast"
+import { formatUpdateTime, getTemperatureColor } from "@/lib/utils"
+import { getWeatherIcon } from "./weather-icons"
 
 export default function WeatherCard({ data }: { data: WeatherData }) {
-  // Function to determine temperature color based on the requirements
-  const getTemperatureColor = (temp: number) => {
-    switch (true) {
-      case temp <= 5:
-        return "bg-gradient-to-b from-sky-500 to-sky-700"
-      case temp > 5 && temp <= 25:
-        return "bg-gradient-to-b from-orange-500 to-orange-700"
-      default:
-        return "bg-gradient-to-b from-red-500 to-red-700"
-    }
-  }
 
   return (
     <Card className="w-full max-w-sm shadow-md hover:shadow-lg transition-shadow duration-300 weather-card">
@@ -28,7 +19,7 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
               </div>
             </div>
             <div className="px-2 text-white/70 text-xs">
-              <time dateTime="2025-10-18T05:10:00">Today, Oct 18 5:10</time>
+              <time dateTime="2025-10-18T05:10:00">{formatUpdateTime(data.lastUpdated)}</time>
             </div>
           </CardTitle>
         </CardHeader>
@@ -44,19 +35,15 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
                   aria-label="Temperature range: high 17 degrees, low 10 degrees"
                 >
                   <ArrowUp className="w-3 h-3" aria-hidden="true" />
-                  <span>{data.temp_max}°</span>
+                  <span>{data.dailyForecast[0].maxTemp}°</span>
                   <ArrowDown className="w-3 h-3" aria-hidden="true" />
-                  <span>{data.temp_min}°</span>
+                  <span>{data.dailyForecast[0].minTemp}°</span>
                 </div>
               </div>
             </div>
-            <div className="flex flex-col w-1/3 px-4 items-end text-end justify-center text-white">
-              <div className="mt-1" aria-hidden="true">
-                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none">
-                  <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" stroke="white" strokeWidth="2" fill="none" />
-                </svg>
-              </div>
-              <div className="flex flex-col items-end justify-center text-xs font-medium">Mostly Cloudy</div>
+            <div className="flex flex-col items-center text-center justify-center text-white">
+              <div className="mt-1" aria-hidden="true">{getWeatherIcon(data.icon)}</div>
+              <div className="flex flex-col items-center justify-center text-xs font-medium">{data.description}</div>
             </div>
           </div>
 
@@ -68,12 +55,12 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
             <div className="grid grid-cols-2 gap-2">
               <div className="flex flex-col items-center">
                 <div className="text-xs text-center">Humidity</div>
-                <div className="text-normal font-medium">72%</div>
+                <div className="text-normal font-medium">{data.humidity}%</div>
 
               </div>
               <div className="flex flex-col items-center border-l border-white/30">
                 <div className="text-xs text-center">Pressure</div>
-                <div className="text-normal font-medium">1013 hPa</div>
+                <div className="text-normal font-medium">{data.pressure} hPa</div>
               </div>
             </div>
           </div>

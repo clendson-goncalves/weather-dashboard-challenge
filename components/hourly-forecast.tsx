@@ -1,6 +1,6 @@
 "use client"
 
-import type { WeatherData } from "@/lib/types"
+import type { WeatherData } from "@/lib/weather-store"
 import { Card, CardHeader, CardTitle } from "./ui/card"
 
 export default function HourlyForecast({ data }: { data: WeatherData }) {

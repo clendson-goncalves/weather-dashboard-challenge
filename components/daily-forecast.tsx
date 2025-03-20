@@ -2,13 +2,19 @@
 
 import type { WeatherData } from "@/lib/weather-store"
 import WeatherIcon from "./weather-icons"
-import { ArrowUp, ArrowDown, ChevronDown } from "lucide-react"
+import { ArrowUp, ArrowDown } from "lucide-react"
 export default function DailyForecast({ data }: { data: WeatherData }) {
     return (
         <div>
-            {data.dailyForecast.map((item, index) => (
+            <div className="p-1 mb-2">
+                <h3 className="text-xs font-semibold" id="daily-forecast">
+                    Daily Forecast
+                </h3>
+            </div>
+
+            {data.dailyForecast.slice(1).map((item, index) => (
                 <div key={index} role="region">
-                    <div className="border border-gray-200 rounded-xl mb-1 py-2 px-3 flex items-center justify-between">
+                    <div className="border border-foreground/10 rounded-xl mb-1 py-2 px-3 flex items-center justify-between">
                         <div className="flex items-center gap-2">
                             <div className="w-6 h-6 flex items-center justify-center" aria-hidden="true">
                                 <WeatherIcon iconCode={item.icon} size={18} />

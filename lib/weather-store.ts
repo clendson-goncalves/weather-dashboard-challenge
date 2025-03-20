@@ -97,10 +97,7 @@ export const useWeatherStore = create<WeatherStore>((set) => ({
               icon: day.icons[Math.floor(day.icons.length / 2)], 
               description: current.weather[0].main,
             }))
-            .slice(0, 5) // limit to 5 days
-
-          console.clear()
-          console.log(dailyForecast)
+            .slice(0, 6) 
 
           return {
             city: city.name,

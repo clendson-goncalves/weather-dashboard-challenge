@@ -9,7 +9,7 @@ import DailyForecast from "@/components/daily-forecast"
 export default function WeatherCard({ data }: { data: WeatherData }) {
 
   return (
-    <Card className="w-full max-w-sm shadow-md hover:shadow-lg transition-shadow duration-300 weather-card">
+    <Card className="w-full max-w-sm shadow-md hover:shadow-lg transition-shadow duration-500 weather-card">
       <div className={`pt-4 flex flex-col rounded-xl ${getTemperatureColor(data.temperature)}`}>
         <CardHeader>
           <CardTitle>
@@ -25,14 +25,14 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex justify-between px-5 mt-3 gap-14">
+          <div className="flex justify-between px-4 mt-3 gap-14">
             <div className="relative">
               <div className="text-white text-[90px] font-bold leading-none tracking-lighter">
                 {data.temperature}<span className="absolute text-4xl top-5 px-2">°C</span>
               </div>
               <div className="flex items-center">
                 <div
-                  className="bg-white/10 rounded-full py-0.5 flex items-center gap-1 text-white text-xs"
+                  className="bg-white/10 rounded-full py-0.5 px-1 flex items-center gap-2 text-white text-xs"
                   aria-label="Temperature range: high 17 degrees, low 10 degrees"
                 >
                   <ArrowUp className="w-3 h-3" aria-hidden="true" />
@@ -43,13 +43,13 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
               </div>
             </div>
             <div className="flex flex-col items-center text-center justify-center text-white">
-              <div className="mt-1" aria-hidden="true"><WeatherIcon iconCode={data.icon} stroke="white"/></div>
+              <div className="mt-1 mb-1" aria-hidden="true"><WeatherIcon iconCode={data.icon} stroke="white"/></div>
               <div className="flex flex-col items-center justify-center text-xs font-medium">{data.description}</div>
             </div>
           </div>
 
           <div
-            className="hidden sm:block mt-6 p-3 bg-white/10 backdrop-blur-md rounded-xl text-white"
+            className="hidden sm:block mt-6 p-3 bg-white/10 rounded-xl text-white"
             role="region"
             aria-label="Current weather conditions"
           >
@@ -67,7 +67,7 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
           </div>
         </CardContent>
 
-        <div className="w-full bg-white dark:bg-slate-800 rounded-xl p-4 mt-8">
+        <div className="w-full bg-white dark:bg-slate-800 rounded-xl p-4 mt-8 hidden md:block">
           <HourlyForecast data={data}/>
           <DailyForecast data={data}/>
         </div>

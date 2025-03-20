@@ -20,6 +20,7 @@ export type WeatherData = {
     minTemp: number
     maxTemp: number
     icon: string
+    description: string
   }>
   lastUpdated: Date
 }
@@ -93,9 +94,13 @@ export const useWeatherStore = create<WeatherStore>((set) => ({
               date: day.date,
               minTemp: Math.round(Math.min(...day.temps)),
               maxTemp: Math.round(Math.max(...day.temps)),
-              icon: day.icons[Math.floor(day.icons.length / 2)], // middle of the day icon
+              icon: day.icons[Math.floor(day.icons.length / 2)], 
+              description: current.weather[0].main,
             }))
             .slice(0, 5) // limit to 5 days
+
+          console.clear()
+          console.log(dailyForecast)
 
           return {
             city: city.name,
@@ -133,5 +138,6 @@ export type HourlyForecast = {
   time: Date
   temperature: number
   icon: string
+  description: string
 }
 

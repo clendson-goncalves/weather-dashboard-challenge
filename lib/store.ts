@@ -1,15 +1,6 @@
 import { create } from "zustand"
 import { fetchWeatherForCity } from "./api"
-
-export type WeatherData = {
-  city: string
-  country: string
-  temperature: number
-  humidity: number
-  pressure: number
-  temp_max: number
-  temp_min: number
-}
+import type { WeatherData } from "./types"
 
 type WeatherStore = {
   weatherData: WeatherData[]

@@ -51,15 +51,6 @@ module.exports = {
             DEFAULT: "hsl(var(--card))",
             foreground: "hsl(var(--card-foreground))",
           },
-          // Custom weather temperature colors
-          temp: {
-            cold: "#0EA5E9", // sky-500
-            colddark: "#0369A1", // sky-700
-            moderate: "#F97316", // orange-500
-            moderatedark: "#C2410C", // orange-700
-            hot: "#EF4444", // red-500
-            hotdark: "#991B1B", // red-700
-          },
         },
         borderRadius: {
           lg: "var(--radius)",

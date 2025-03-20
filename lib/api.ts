@@ -1,14 +1,6 @@
-type WeatherResponse = {
-  city: string
-  country: string
-  temperature: number
-  humidity: number
-  pressure: number
-  temp_max: number
-  temp_min: number
-}
+import type { WeatherData } from "./types"
 
-export async function fetchWeatherForCity(city: string, countryCode: string): Promise<WeatherResponse> {
+export async function fetchWeatherForCity(city: string, countryCode: string): Promise<WeatherData> {
   const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY
 
   if (!API_KEY) {
@@ -37,6 +29,7 @@ export async function fetchWeatherForCity(city: string, countryCode: string): Pr
       pressure: data.main.pressure,
       temp_max: Math.round(data.main.temp_max),
       temp_min: Math.round(data.main.temp_min),
+      icon: data.weather[0].icon,
     }
   } catch (error) {
     console.error("Error fetching weather data:", error)

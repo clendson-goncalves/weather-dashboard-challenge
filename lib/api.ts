@@ -4,6 +4,8 @@ type WeatherResponse = {
   temperature: number
   humidity: number
   pressure: number
+  temp_max: number
+  temp_min: number
 }
 
 export async function fetchWeatherForCity(city: string, countryCode: string): Promise<WeatherResponse> {
@@ -33,6 +35,8 @@ export async function fetchWeatherForCity(city: string, countryCode: string): Pr
       temperature: Math.round(data.main.temp),
       humidity: data.main.humidity,
       pressure: data.main.pressure,
+      temp_max: Math.round(data.main.temp_max),
+      temp_min: Math.round(data.main.temp_min),
     }
   } catch (error) {
     console.error("Error fetching weather data:", error)

@@ -53,9 +53,12 @@ module.exports = {
           },
           // Custom weather temperature colors
           temp: {
-            cold: "#0ea5e9", // sky-500
-            moderate: "#f97316", // orange-500
-            hot: "#ef4444", // red-500
+            cold: "#0EA5E9", // sky-500
+            colddark: "#0369A1", // sky-700
+            moderate: "#F97316", // orange-500
+            moderatedark: "#C2410C", // orange-700
+            hot: "#EF4444", // red-500
+            hotdark: "#991B1B", // red-700
           },
         },
         borderRadius: {
@@ -76,6 +79,10 @@ module.exports = {
         animation: {
           "accordion-down": "accordion-down 0.2s ease-out",
           "accordion-up": "accordion-up 0.2s ease-out",
+        },
+        letterSpacing: {
+          default: "-0.02em",
+          lighter: "-0.10em",
         },
       },
     },

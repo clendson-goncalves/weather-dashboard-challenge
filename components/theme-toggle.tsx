@@ -4,40 +4,42 @@ import { useEffect, useState } from "react"
 import { Moon, Sun } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+/**
+ * A toggle button for switching between light and dark themes.
+ * 
+ * @returns {JSX.Element} The theme toggle component.
+ */
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<"light" | "dark">("light")
+  const [dark, setDark] = useState(false)
 
   useEffect(() => {
-    // Check if user has a theme preference in localStorage
-    const storedTheme = localStorage.getItem("theme") as "light" | "dark" | null
+    const storedTheme = localStorage.getItem("theme")
+    const isDark = storedTheme === "dark" || (!storedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)
 
-    if (storedTheme) {
-      setTheme(storedTheme)
-      document.documentElement.classList.toggle("dark", storedTheme === "dark")
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      // If no stored preference, check system preference
-      setTheme("dark")
-      document.documentElement.classList.add("dark")
-    }
+    setDark(isDark)
+    document.documentElement.classList.toggle("dark", isDark)
   }, [])
 
+  /**
+   * Toggles between light and dark themes.
+   */
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light"
-    setTheme(newTheme)
-    document.documentElement.classList.toggle("dark", newTheme === "dark")
-    localStorage.setItem("theme", newTheme)
+    const newDark = !dark
+    setDark(newDark)
+    document.documentElement.classList.toggle("dark", newDark)
+    localStorage.setItem("theme", newDark ? "dark" : "light")
   }
 
   return (
     <Button
+      onClick={toggleTheme}
       variant="outline"
       size="icon"
-      onClick={toggleTheme}
       className="fixed top-4 right-4"
-      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-pressed={dark}
     >
-      {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+      {dark ? <Sun className="h-5 w-5" aria-hidden="true" /> : <Moon className="h-5 w-5" aria-hidden="true" />}
     </Button>
   )
 }
-

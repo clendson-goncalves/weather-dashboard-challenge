@@ -65,8 +65,7 @@ export const useWeatherStore = create<WeatherStore>((set) => ({
           if (!forecastRes.ok) throw new Error(`Error fetching forecast for ${city.name}`)
           const forecast = await forecastRes.json()
 
-          // Process hourly forecast (next 18 hours)
-          const hourlyForecast = forecast.list.slice(0, 6).map((item: any) => ({
+          const hourlyForecast = forecast.list.slice(0, 5).map((item: any) => ({
             time: new Date(item.dt * 1000),
             temperature: Math.round(item.main.temp),
             icon: item.weather[0].icon,

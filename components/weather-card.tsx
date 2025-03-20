@@ -3,8 +3,7 @@ import type { WeatherData } from "@/lib/weather-store"
 import { MapPin, ArrowUp, ArrowDown, ChevronDown } from "lucide-react"
 import HourlyForecast from "@/components/hourly-forecast"
 import { formatUpdateTime, getTemperatureColor } from "@/lib/utils"
-import { getWeatherIcon } from "./weather-icons"
-
+import WeatherIcon from "@/components/weather-icons"
 export default function WeatherCard({ data }: { data: WeatherData }) {
 
   return (
@@ -31,7 +30,7 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
               </div>
               <div className="flex items-center">
                 <div
-                  className="bg-white/10 rounded-full px-3 py-0.5 flex items-center gap-1 text-white text-xs"
+                  className="bg-white/10 rounded-full py-0.5 flex items-center gap-1 text-white text-xs"
                   aria-label="Temperature range: high 17 degrees, low 10 degrees"
                 >
                   <ArrowUp className="w-3 h-3" aria-hidden="true" />
@@ -42,7 +41,7 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
               </div>
             </div>
             <div className="flex flex-col items-center text-center justify-center text-white">
-              <div className="mt-1" aria-hidden="true">{getWeatherIcon(data.icon)}</div>
+              <div className="mt-1" aria-hidden="true"><WeatherIcon iconCode={data.icon} stroke="white"/></div>
               <div className="flex flex-col items-center justify-center text-xs font-medium">{data.description}</div>
             </div>
           </div>
@@ -67,8 +66,9 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
         </CardContent>
 
         <div className="w-full bg-white dark:bg-slate-800 rounded-xl p-4 mt-8">
+          <HourlyForecast data={data}/>
 
-          <HourlyForecast data={data} />
+
 
 
          {/* Daily forecasts - show only tomorrow on xs, show more on sm+, show all on md+ */}

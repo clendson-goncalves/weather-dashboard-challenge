@@ -8,22 +8,30 @@ import {
     CloudFog,
     CloudLightning,
     CloudSun,
-    CloudMoon,
-    LucideProps
+    CloudMoon
   } from "lucide-react"
+
+export default function WeatherIcon({ 
+    iconCode, 
+    size = 40, 
+    viewBox = "0 0 24 24",
+    strokeWidth = 2,
+    stroke = "currentColor",
+    fill = "none" }: { iconCode: string, size?: number, viewBox?: string, strokeWidth?: number, stroke?: string, fill?: string }) {
   
-export const getWeatherIcon = (iconCode: string, props: LucideProps = {}) => {
     const isDay = !iconCode.endsWith("n")
-  
-    // Default props for all icons
+    
+    // Check if the dark class is present on the document
+    const isDarkTheme = typeof document !== "undefined" && document.documentElement.classList.contains("dark");
+
     const iconProps = {
-      size: props.size || 40,
-      className: props.className || "",
-      strokeWidth: props.strokeWidth || 2,
-      stroke: props.stroke || "white",
-      fill: props.fill || "none",
-    }
-  
+        size,
+        viewBox,
+        strokeWidth,
+        stroke,
+        fill,
+    };
+
     switch (iconCode.slice(0, 2)) {
       case "01": // clear sky
         return isDay ? <Sun {...iconProps} /> : <Moon {...iconProps} />

@@ -12,8 +12,10 @@ import WeatherCard from "./weather-card"
  */
 export default function WeatherDashboard() {
   const { data, fetchWeather, loading, error } = useWeatherStore()
-  
-  const minutes = 1
+
+  /*Update interval in minutes*/
+  const minutes = 10
+
   const updateInterval = minutes * 60 * 1000 
 
   useEffect(() => {
@@ -26,7 +28,7 @@ export default function WeatherDashboard() {
     const interval = setInterval(updateWeather, updateInterval)
 
     return () => clearInterval(interval)
-  }, [fetchWeather])
+  }, [fetchWeather, updateInterval])
 
   return (
     <section className="w-full max-w-4xl">

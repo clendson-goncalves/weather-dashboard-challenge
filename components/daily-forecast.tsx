@@ -16,7 +16,7 @@ export default function DailyForecast({ data }: { data: WeatherData }) {
     <div aria-labelledby="daily-forecast-title">
       <h3 id="daily-forecast-title" className="p-1 mb-2 text-xs font-semibold">Daily Forecast</h3>
       <ul role="list">
-        {data.dailyForecast.slice(1).map((item, index) => (
+        {data.dailyForecast.map((item, index) => (
           <li
             key={index}
             className="border border-foreground/10 rounded-xl mb-1 py-2 px-3 flex items-center justify-between"

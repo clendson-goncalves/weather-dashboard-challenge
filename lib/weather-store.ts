@@ -123,9 +123,9 @@ export const useWeatherStore = create<WeatherStore>((set) => ({
             minTemp: Math.round(Math.min(...temps)),
             maxTemp: Math.round(Math.max(...temps)),
             icon: icons[Math.floor(icons.length / 2)],
-            description: current.weather[0].main,
+            description: current.weather[0].description,
           }))
-
+          
           return {
             city: name,
             country,

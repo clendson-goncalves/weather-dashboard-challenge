@@ -1,6 +1,7 @@
 import {
   Sun, Moon, Cloud, CloudDrizzle, CloudRain, CloudSnow,
-  CloudFog, CloudLightning, CloudSun, CloudMoon
+  CloudFog, CloudLightning, CloudSun, CloudMoon,
+  CloudMoonRain
 } from "lucide-react"
 
 /**
@@ -35,7 +36,7 @@ export default function WeatherIcon({
     "03": <Cloud {...iconProps} />,
     "04": <Cloud {...iconProps} />,
     "09": <CloudDrizzle {...iconProps} />,
-    "10": <CloudRain {...iconProps} />,
+    "10": isDay ? <CloudRain {...iconProps} /> : <CloudMoonRain {...iconProps} />,
     "11": <CloudLightning {...iconProps} />,
     "13": <CloudSnow {...iconProps} />,
     "50": <CloudFog {...iconProps} />

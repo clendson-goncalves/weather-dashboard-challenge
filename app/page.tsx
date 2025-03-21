@@ -18,7 +18,7 @@ export default function Home() {
         </h2>
       </header>
       <WeatherDashboard />
-      <footer className="mt-12 text-center text-xs text-muted-foreground" role="contentinfo">
+      <footer className="mt-2 text-center text-xs text-muted-foreground" role="contentinfo">
         <p>Data provided by OpenWeatherMap</p>
       </footer>
     </main>

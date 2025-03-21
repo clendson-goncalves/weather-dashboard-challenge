@@ -16,8 +16,7 @@ import DailyForecast from "@/components/daily-forecast";
  * @returns {JSX.Element} The rendered WeatherCard component.
  */
 export default function WeatherCard({ data }: { data: WeatherData }) {
-  console.log("data: ", data);
-
+  
   return (
     <Card className="w-full max-w-sm shadow-md hover:shadow-lg transition-shadow duration-500 weather-card">
       {/* Container for weather details with dynamic background color based on temperature */}
@@ -31,7 +30,7 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
               </div>
             </div>
             <div className="px-2 text-white/70 text-xs">
-              <time dateTime={data.lastUpdated.toISOString()}>{formatUpdateTime(data.lastUpdated)}</time>
+              <time dateTime={data.lastUpdated.toISOString()}>Today, {formatUpdateTime(data.lastUpdated)}</time>
             </div>
           </CardTitle>
         </CardHeader>

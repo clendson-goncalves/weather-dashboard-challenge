@@ -30,5 +30,5 @@ export const getTemperatureColor = (temp: number) =>
  */
 export const formatUpdateTime = (date: Date) => {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-  return `Today, ${months[date.getMonth()]} ${date.getDate()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, "0")}`
+  return `${months[date.getMonth()]} ${date.getDate()} ${date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true })}`
 }

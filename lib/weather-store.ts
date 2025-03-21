@@ -1,3 +1,4 @@
+import DailyForecast from "@/components/daily-forecast";
 import { create } from "zustand"
 
 /**
@@ -31,7 +32,7 @@ type WeatherAPIResponse = {
  * API response type for weather forecast data.
  */
 type ForecastAPIResponse = {
-  list: { dt: number; main: { temp: number }; weather: { icon: string }[] }[];
+  list: { dt: number; main: { temp: number }; weather: { description: string; icon: string }[] }[];
 }
 
 /**
@@ -67,7 +68,9 @@ export const useWeatherStore = create<WeatherStore>((set) => ({
        * @param {string} url - The API endpoint to fetch data from.
        * @returns {Promise<T>} - The parsed JSON response.
        */
-      const fetchJson = async <T>(url: string): Promise<T> => (await fetch(url)).json()
+      const fetchJson = async function<T>(url: string): Promise<T> {
+        return (await fetch(url)).json()
+      }
       
       const weatherData = await Promise.all(
         CITIES.map(async ({ name, country, state }) => {
@@ -86,10 +89,10 @@ export const useWeatherStore = create<WeatherStore>((set) => ({
           /**
            * Maps daily forecast data by grouping temperature and icon data by date.
            */
-          const dailyMap = new Map<string, { date: Date; temps: number[]; icons: string[] }>()
+          const dailyMap = new Map<string, { date: Date; temps: number[]; icons: string[]; description: string }>()
           forecast.list.forEach(({ dt, main, weather }) => {
             const dateStr = new Date(dt * 1000).toDateString()
-            if (!dailyMap.has(dateStr)) dailyMap.set(dateStr, { date: new Date(dt * 1000), temps: [], icons: [] })
+            if (!dailyMap.has(dateStr)) dailyMap.set(dateStr, { date: new Date(dt * 1000), temps: [], icons: [], description: weather[0].description })
             dailyMap.get(dateStr)?.temps.push(main.temp)
             dailyMap.get(dateStr)?.icons.push(weather[0].icon)
           })
@@ -97,10 +100,15 @@ export const useWeatherStore = create<WeatherStore>((set) => ({
           /**
            * Processes daily forecast data.
            */
-          const dailyForecast = Array.from(dailyMap.values()).slice(0, 6).map(({ date, temps, icons }) => ({
-            date, minTemp: Math.round(Math.min(...temps)), maxTemp: Math.round(Math.max(...temps)),
-            icon: icons[Math.floor(icons.length / 2)], description: current.weather[0].description
+          const dailyForecast: DailyForecast[] = Array.from(dailyMap.values()).slice(0, 6).map(({ date, temps, icons }) => ({
+            date,
+            minTemp: Math.round(Math.min(...temps)),
+            maxTemp: Math.round(Math.max(...temps)),
+            icon: icons[Math.floor(icons.length / 2)],
+            description: forecast.list.find(item => new Date(item.dt * 1000).toDateString() === date.toDateString())?.weather[0].description || ''
           }))
+
+          console.log(dailyForecast)
 
           return {
             city: name, country, temperature: Math.round(current.main.temp),
@@ -112,6 +120,8 @@ export const useWeatherStore = create<WeatherStore>((set) => ({
           }
         })
       )
+
+
       set({ data: weatherData, loading: false })
     } catch (error) {
       set({ error: (error as Error).message, loading: false })

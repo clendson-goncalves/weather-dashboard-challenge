@@ -14,7 +14,7 @@ export default function Home() {
           Weather Monitor
         </h1>
         <h2 className="text-muted-foreground" role="heading" aria-level={2}>
-          Real-time weather data for Joinville, San Francisco, and Urubici
+          Real-time weather data for Joinville / SC (Brazil), San Francisco / CA (USA) and Urubici / SC (Brazil)
         </h2>
       </header>
       <WeatherDashboard />

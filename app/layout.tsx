@@ -4,7 +4,7 @@ import "./globals.css";
 /** App metadata. */
 export const metadata: Metadata = {
   title: "Weather Monitor",
-  description: "Real-time weather data for selected locations.",
+  description: "Real-time weather data for Joinville / SC (Brazil), San Francisco / CA (USA) and Urubici / SC (Brazil)",
 };
 
 /**

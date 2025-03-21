@@ -14,7 +14,7 @@ import { ArrowUp, ArrowDown } from "lucide-react";
 export default function DailyForecast({ data }: { data: WeatherData }) {
   return (
     <div aria-labelledby="daily-forecast-title">
-      <h3 id="daily-forecast-title" className="p-1 mb-2 text-xs font-semibold">Daily Forecast</h3>
+      <h3 id="daily-forecast-title" className="p-1 mb-2 text-normal lg:text-xs font-semibold">Daily Forecast</h3>
       <ul role="list">
         {data.dailyForecast.map((item, index) => (
           <li
@@ -24,16 +24,16 @@ export default function DailyForecast({ data }: { data: WeatherData }) {
             aria-label={`${item.date.toLocaleDateString('en-US', { weekday: 'long' })}: ${item.description}, max ${item.maxTemp}°, min ${item.minTemp}°`}
           >
             <div className="flex items-center gap-2">
-              <WeatherIcon iconCode={item.icon} size={18} aria-hidden="true" />
+              <WeatherIcon iconCode={item.icon} aria-hidden="true" className="w-8 h-8 lg:w-5 lg:h-5" />
               <div>
-                <div className="text-xs font-medium">{item.date.toLocaleDateString('en-US', { weekday: 'long' })}</div>
-                <div className="text-[10px] text-muted-foreground">{item.description}</div>
+                <div className="lg:text-xs font-medium">{item.date.toLocaleDateString('en-US', { weekday: 'long' })}</div>
+                <div className="text-sm lg:text-[10px] text-muted-foreground">{item.description}</div>
               </div>
             </div>
-            <div className="flex items-center gap-1 text-[10px]" aria-hidden="true">
-              <ArrowUp className="w-2 h-2" />
+            <div className="flex items-center gap-1 lg:text-[10px]" aria-hidden="true">
+              <ArrowUp className="w-4 h-4 lg:w-2 lg:h-2" />
               <span>{item.maxTemp}°</span>
-              <ArrowDown className="w-2 h-2 ml-1" />
+              <ArrowDown className="w-4 h-4 lg:w-2 lg:h-2 ml-1" />
               <span>{item.minTemp}°</span>
             </div>
           </li>

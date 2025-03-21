@@ -17,10 +17,10 @@ export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs))
  */
 export const getTemperatureColor = (temp: number) =>
   temp <= 5
-    ? "bg-gradient-to-b from-sky-500 to-sky-700"
+    ? "from-sky-400 to-sky-600"
     : temp <= 25
-      ? "bg-gradient-to-b from-orange-500 to-orange-700"
-      : "bg-gradient-to-b from-red-500 to-red-700"
+      ? "from-orange-400 to-orange-600"
+      : "from-red-400 to-red-600"
 
 /**
  * Formats a Date object into a readable update time string.

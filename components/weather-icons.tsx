@@ -14,21 +14,23 @@ import {
  * @param {number} [props.strokeWidth=2] - The stroke width of the icon.
  * @param {string} [props.stroke="currentColor"] - The stroke color of the icon.
  * @param {string} [props.fill="none"] - The fill color of the icon.
+ * @param {string} [props.className=""] - The class name of the icon.
  * @returns {JSX.Element} The corresponding weather icon component.
  */
 
 export default function WeatherIcon({ 
   iconCode, 
-  size = 40, 
+  size = undefined, 
   viewBox = "0 0 24 24",
   strokeWidth = 2,
   stroke = "currentColor",
-  fill = "none" 
-}: { iconCode: string, size?: number, viewBox?: string, strokeWidth?: number, stroke?: string, fill?: string }) {
+  fill = "none",
+  className = ""
+}: { iconCode: string, size?: number, viewBox?: string, strokeWidth?: number, stroke?: string, fill?: string, className?: string }) {
   
   const isDay = !iconCode.endsWith("n");
 
-  const iconProps = { size, viewBox, strokeWidth, stroke, fill };
+  const iconProps = { size, viewBox, strokeWidth, stroke, fill, className };
 
   const icons: { [key: string]: JSX.Element } = {
     "01": isDay ? <Sun {...iconProps} /> : <Moon {...iconProps} />,

@@ -46,7 +46,7 @@ export default function WeatherDashboard() {
       {data && data.length > 0 ? (
         <>
           <div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full"
             key={data[0].lastUpdated.getTime()}
           >
             {data.map((item) => (

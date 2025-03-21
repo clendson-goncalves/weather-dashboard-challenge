@@ -54,7 +54,7 @@ A modern and responsive weather dashboard built with Next.js that displays real-
 ### Data Flow
 
 - Real-time API integration
-- Parallel data fetching
+- Parallel data fetching (Async / Await)
 - Error handling
 - Loading states
 - Auto-refresh mechanism
@@ -83,7 +83,7 @@ npm install
 NEXT_PUBLIC_OPENWEATHER_API_KEY=your_api_key_here
 ```
 
-4. Available scripts:
+4. Run:
 
 ```bash
 npm run dev # Start development server

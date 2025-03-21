@@ -13,7 +13,7 @@ import WeatherIcon from "./weather-icons";
 export default function HourlyForecast({ data }: { data: WeatherData }) {
   return (
     <div aria-labelledby="hourly-forecast-title">
-      <h3 id="hourly-forecast-title" className="p-1 text-xs font-semibold">Hourly Forecast</h3>
+      <h3 id="hourly-forecast-title" className="p-1 text-mormal lg:text-xs font-semibold">Hourly Forecast</h3>
       <div className="grid grid-cols-5 mb-3 py-1" role="list">
         {data.hourlyForecast.map((item, index) => (
           <div
@@ -22,11 +22,11 @@ export default function HourlyForecast({ data }: { data: WeatherData }) {
             role="listitem"
             aria-label={`${item.time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}, ${item.temperature}°`}
           >
-            <WeatherIcon iconCode={item.icon} size={16} aria-hidden="true" />
-            <span className="text-[8px] text-gray-500 mt-0.5">
+            <WeatherIcon iconCode={item.icon} aria-hidden="true" className="w-10 h-10 lg:w-5 lg:h-5"/>
+            <span className="text-xs lg:text-[8px] text-gray-500 mt-0.5">
               {item.time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}
             </span>
-            <span className="text-xs font-medium">{item.temperature}°</span>
+            <span className="font-medium text-xl lg:text-xs">{item.temperature}°</span>
           </div>
         ))}
       </div>
